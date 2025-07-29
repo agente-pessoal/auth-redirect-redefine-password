@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirecionando...</title>
+</head>
+<body>
+    <p>Aguarde, você está sendo redirecionado...</p>
+
+    <script>
+        (function() {
+            // IMPORTANTE: Coloque a URL da sua aplicação Streamlit aqui!
+            const streamlitAppUrl = "https://agentepesoaldashboard.streamlit.app/"; 
+
+            // O Supabase envia os tokens no 'hash' (#) da URL
+            const fragment = window.location.hash.substring(1);
+
+            if (fragment) {
+                // Constrói a URL final para o Streamlit com os tokens como parâmetros de query (?)
+                const finalUrl = streamlitAppUrl + '?' + fragment;
+
+                // Redireciona o navegador para a aplicação Streamlit
+                window.location.replace(finalUrl);
+            } else {
+                // Mensagem de fallback caso algo dê errado e não haja tokens
+                document.body.innerText = "Token de autenticação não encontrado. Por favor, envie o email de redefinição de senha novamente e tente mais uma vez.";
+            }
+        })();
+    </script>
+</body>
+</html>
